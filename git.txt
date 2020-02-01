@@ -1,0 +1,54 @@
+// Git & GitHub Terminal Commands :=>
+
+1.Set name & email :
+    $git config --global user.name "name"
+    $git config --global user.email "mail_id"
+
+
+2.To check for an existing SSH Key :
+    $ls -a -l ~/.ssh
+
+
+3.Generate SSH Key (if not exist) : 
+    $ssh-keygen -t rsa -b 4096 -C "mail_id"
+
+
+4.Register PRIVATE key with your machine/OS (if not already) :
+    $eval $(ssh-agent -s)     //For Windows
+    $eval "$(ssh-agent -s)"  //For Mac/Linux
+
+5.Add PRIVATE file :
+    $ssh-add ~/.ssh/id_rsa       //For Windows
+    $ssh-add -k ~/.ssh/id_rsa   //For Mac/Linux
+
+
+6.Gen. Link to Link the PUBLIC SSH Key with GitHub :
+    $cat ~/.ssh/id_rsa.pub
+
+
+7.Test connection with GitHub :
+    $ssh -T git@github.com
+
+
+8.See Remotes :
+    $git remote
+
+9. Log in with a private key:----
+	1.	Using a text editor, create a file in which to store your private key. 
+			This example uses the file deployment_key.txt
+	2. 	To edit the file in vim, type the following command:
+
+   		vim deployment_key.txt
+	3.	After the editor starts, press i to turn on insert mode.
+	4.	Paste your private key, such as the one in the following image, into the file. 
+		Be sure to include the BEGIN and END lines
+	5.	To save your changes, press Esc.
+
+		Type :wq to write the file and return to the command line.
+	6.	Run the following command to change the file permissions to 600 to secure the key. You can also set them to 400. This step is required:
+
+   		chmod 600 deployment_key.txt
+	7.	Use the key to log in to the SSH client as shown in the following example, which loads the key in file deployment_key.txt, and logs in as user demo to IP 192.237.248.66:
+
+   		ssh -i deployment_key.txt demo@192.237.248.66
+
